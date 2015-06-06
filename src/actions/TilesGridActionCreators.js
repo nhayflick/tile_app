@@ -19,6 +19,12 @@ var TilesGridActionCreators = {
     });
   },
 
+  save: function() {
+    TilesAppDispatcher.dispatch({
+      actionType: TilesAppConstants.SAVE
+    });
+  },
+
 };
 
 module.exports = TilesGridActionCreators; 

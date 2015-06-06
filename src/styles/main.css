@@ -1,7 +1,7 @@
 /* Stiziles */
 
 html, body {
-  background: #222222;
+  background: white;
 }
 
 /* main */
@@ -9,8 +9,8 @@ html, body {
 .main {
   width: 100%;
   height: 100%;
-  background: #222222;
-  color: #fff;
+  background: white;
+  color: black;
   text-align: center;
 }
 
