@@ -4,6 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var TilesAppDispatcher = require('../dispatcher/TilesAppDispatcher');
 var TilesAppConstants = require('../constants/TilesAppConstants');
+var TilesAppUtils = require('../constants/TilesAppUtils');
 var CHANGE_EVENT = 'change';
 
 var _tiles = [];
@@ -18,6 +19,10 @@ function resetTiles() {
     }
     _tiles.push(newRow);
   }
+}
+
+function saveTiles() {
+  saveToServer();
 }
 
 // Paul Irish Random HEX snippet:
@@ -70,6 +75,10 @@ TilesGridStore.dispatchToken = TilesAppDispatcher.register(function(action) {
     case TilesAppConstants.RESET_TILES:
       resetTiles();
       TilesGridStore.emitChange();
+      break;
+
+    case TilesAppConstants.SAVE:
+      saveTiles();
       break;
   }
 

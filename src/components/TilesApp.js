@@ -41,12 +41,17 @@ var TilesApp = React.createClass({
         <h1>Tiles App</h1>
         <TilesGrid tiles={this.state.tiles}/>
         <button onClick={this._onResetTiles}>Reset Tiles</button>
+        <button onClick={this._onSaveTiles}>Save Board</button>
       </div>
     );
   },
 
   _onResetTiles: function () {
     TilesActions.resetTiles();
+  },
+
+  _onSaveTiles: function () {
+    TilesActions.save();
   }
 
 });
