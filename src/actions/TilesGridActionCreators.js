@@ -13,6 +13,12 @@ var TilesGridActionCreators = {
     });
   },
 
+  resetTiles: function() {
+    TilesAppDispatcher.dispatch({
+      actionType: TilesAppConstants.RESET_TILES
+    });
+  },
+
 };
 
 module.exports = TilesGridActionCreators; 

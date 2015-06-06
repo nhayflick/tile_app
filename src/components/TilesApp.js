@@ -3,6 +3,7 @@
 var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var TilesGridStore = require('../stores/TilesGridStore');
+var TilesActions = require('../actions/TilesGridActionCreators');
 var TilesGrid = require('./TilesGrid');
 
 
@@ -39,8 +40,13 @@ var TilesApp = React.createClass({
       <div className='main'>
         <h1>Tiles App</h1>
         <TilesGrid tiles={this.state.tiles}/>
+        <button onClick={this._onResetTiles}>Reset Tiles</button>
       </div>
     );
+  },
+
+  _onResetTiles: function () {
+    TilesActions.resetTiles();
   }
 
 });

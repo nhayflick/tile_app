@@ -14,3 +14,10 @@ html, body {
   text-align: center;
 }
 
+button {
+  color: black;
+  background-color: lightgray;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+}

@@ -9,7 +9,8 @@ var CHANGE_EVENT = 'change';
 var _tiles = [];
 
 // Propogate Tiles
-function createGrid() {
+function resetTiles() {
+  _tiles = [];
   for (var i = 0; i < TilesAppConstants.ROW_COUNT; i++) {
     var newRow = [];
     for (var j = 0; j < TilesAppConstants.COLUMN_COUNT; j++) {
@@ -18,8 +19,6 @@ function createGrid() {
     _tiles.push(newRow);
   }
 }
-
-createGrid();
 
 // Paul Irish Random HEX snippet:
 // http://www.paulirish.com/2009/random-hex-color-code-snippets/
@@ -54,9 +53,6 @@ var TilesGridStore = assign({}, EventEmitter.prototype, {
   },
 
   getTiles: function() {
-    if (!_tiles.length) {
-      createGrid();
-    }
     return _tiles;
   }
 
@@ -70,8 +66,16 @@ TilesGridStore.dispatchToken = TilesAppDispatcher.register(function(action) {
       toggleTile(action.row, action.column);
       TilesGridStore.emitChange();
       break;
+
+    case TilesAppConstants.RESET_TILES:
+      resetTiles();
+      TilesGridStore.emitChange();
+      break;
   }
 
 });
+
+resetTiles();
+
 
 module.exports = TilesGridStore; 
