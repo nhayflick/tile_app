@@ -13,7 +13,7 @@ var TilesRow = React.createClass({
 
     // Make Rows
     for (var i = 0; i < tiles.length; i++) {
-      tiles.push(<Tile key={i} column={i} tiles={tiles[i]} />);
+      tileComponents.push(<Tile key={i} column={i} row={this.props.row} tile={tiles[i]} />);
     }
 
     return (

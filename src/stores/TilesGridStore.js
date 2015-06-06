@@ -19,6 +19,8 @@ function createGrid() {
   }
 }
 
+createGrid();
+
 // Paul Irish Random HEX snippet:
 // http://www.paulirish.com/2009/random-hex-color-code-snippets/
 function makeRandomColor() {
@@ -62,13 +64,13 @@ var TilesGridStore = assign({}, EventEmitter.prototype, {
 
 TilesGridStore.dispatchToken = TilesAppDispatcher.register(function(action) {
 
-  switch(action.type) {
+
+  switch(action.actionType) {
     case TilesAppConstants.TOGGLE_TILE:
       toggleTile(action.row, action.column);
+      TilesGridStore.emitChange();
       break;
   }
-
-  return true;
 
 });
 

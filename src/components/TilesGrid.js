@@ -14,7 +14,7 @@ var TilesGrid = React.createClass({
 
     // Make Rows
     for (var i = 0; i < tileRows.length; i++) {
-      tilesRowComponents.push(<TilesRow key={i} tiles={tileRows[i]} />);
+      tilesRowComponents.push(<TilesRow key={i} row={i} tiles={tileRows[i]} />);
     }
 
     return (
