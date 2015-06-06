@@ -1,10 +1,10 @@
 'use strict';
 
-describe('TileGridStore', function() {
+describe('TilesGridStore', function() {
   var store;
 
   beforeEach(function() {
-    store = require('stores/TileGridStore.js');
+    store = require('stores/TilesGridStore.js');
   });
 
   it('should be defined', function() {

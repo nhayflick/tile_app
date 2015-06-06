@@ -3,16 +3,16 @@
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var TilesAppDispatcher = require('../dispatcher/TilesAppDispatcher');
-var TileAppConstants = require('../constants/TileAppConstants');
+var TilesAppConstants = require('../constants/TilesAppConstants');
 var CHANGE_EVENT = 'change';
 
 var _tiles = [];
 
 // Propogate Tiles
 function createGrid() {
-  for (var i = 0; i < TileAppConstants.ROW_COUNT; i++) {
+  for (var i = 0; i < TilesAppConstants.ROW_COUNT; i++) {
     var newRow = [];
-    for (var i = 0; i < TileAppConstants.COLUMN_COUNT; i++) {
+    for (var i = 0; i < TilesAppConstants.COLUMN_COUNT; i++) {
       newRow.push(false);
     };
     _tiles.push(newRow);
@@ -30,7 +30,7 @@ function makeRandomColor() {
   return '#'+Math.floor(Math.random()*16777215).toString(16);
 }
 
-var TileGridStore = assign({}, EventEmitter.prototype, {
+var TilesGridStore = assign({}, EventEmitter.prototype, {
   getTiles: function() {
     if (!_tiles.length) {
       createGrid();
@@ -39,14 +39,14 @@ var TileGridStore = assign({}, EventEmitter.prototype, {
   }
 });
 
-TileGridStore.dispatchToken = TilesAppDispatcher.register(function(action) {
+TilesGridStore.dispatchToken = TilesAppDispatcher.register(function(action) {
 
   switch(action.type) {
-    case TileAppConstants.TOGGLE_TILE:
+    case TilesAppConstants.TOGGLE_TILE:
       toggleTile(action.row, action.column);
       break;
   }
 
 });
 
-module.exports = TileGridStore; 
+module.exports = TilesGridStore; 
