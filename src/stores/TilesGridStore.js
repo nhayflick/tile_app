@@ -4,7 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var TilesAppDispatcher = require('../dispatcher/TilesAppDispatcher');
 var TilesAppConstants = require('../constants/TilesAppConstants');
-var TilesAppUtils = require('../constants/TilesAppUtils');
+var TilesAppUtils = require('../utils/TilesAppUtils');
 var CHANGE_EVENT = 'change';
 
 var _tiles = [];
@@ -22,7 +22,7 @@ function resetTiles() {
 }
 
 function saveTiles() {
-  saveToServer();
+  TilesAppUtils.save();
 }
 
 // Paul Irish Random HEX snippet:
