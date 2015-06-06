@@ -3,7 +3,7 @@
 var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var TilesGridStore = require('../stores/TilesGridStore');
-var TilesGrid = require('./TilesGrid.react');
+var TilesGrid = require('./TilesGrid');
 
 
 // CSS
@@ -22,12 +22,12 @@ var TilesApp = React.createClass({
 
   componentWillUnmount: function() {
     TilesGridStore.removeChangeListener(this.onChange);
-  }
+  },
 
   getTilesState: function() {
     return {
       tiles: TilesGridStore.getTiles()
-    }
+    };
   },
 
   onChange: function() {

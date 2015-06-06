@@ -12,16 +12,11 @@ var _tiles = [];
 function createGrid() {
   for (var i = 0; i < TilesAppConstants.ROW_COUNT; i++) {
     var newRow = [];
-    for (var i = 0; i < TilesAppConstants.COLUMN_COUNT; i++) {
+    for (var j = 0; j < TilesAppConstants.COLUMN_COUNT; j++) {
       newRow.push(false);
-    };
+    }
     _tiles.push(newRow);
-  };
-}
-
-// Toggle tile between blank and colored
-function toggleTile(row, column) {
-  _tiles[row][column] =  _tiles[row][column] ? false : makeRandomColor();
+  }
 }
 
 // Paul Irish Random HEX snippet:
@@ -30,13 +25,39 @@ function makeRandomColor() {
   return '#'+Math.floor(Math.random()*16777215).toString(16);
 }
 
+// Toggle tile between blank and colored
+function toggleTile(row, column) {
+  _tiles[row][column] =  _tiles[row][column] ? false : makeRandomColor();
+}
+
+
 var TilesGridStore = assign({}, EventEmitter.prototype, {
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  /**
+   * @param {function} callback
+   */
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  /**
+   * @param {function} callback
+   */
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  },
+
   getTiles: function() {
     if (!_tiles.length) {
       createGrid();
     }
     return _tiles;
   }
+
 });
 
 TilesGridStore.dispatchToken = TilesAppDispatcher.register(function(action) {
@@ -46,6 +67,8 @@ TilesGridStore.dispatchToken = TilesAppDispatcher.register(function(action) {
       toggleTile(action.row, action.column);
       break;
   }
+
+  return true;
 
 });
 
