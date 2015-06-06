@@ -37,6 +37,7 @@ var TilesApp = React.createClass({
   render: function() {
     return (
       <div className='main'>
+        <h1>Tiles App</h1>
         <TilesGrid tiles={this.state.tiles}/>
       </div>
     );
